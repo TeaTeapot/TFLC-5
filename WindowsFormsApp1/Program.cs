@@ -39,6 +39,8 @@ namespace TextEditor
             dataGridViewResults.AllowUserToAddRows = false;
             dataGridViewResults.AllowUserToDeleteRows = false;
             dataGridViewResults.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewResults.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dataGridViewResults.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewResults.CellClick += DataGridViewResults_CellClick;
             dataGridViewResults.Columns.Add("Fragment", "Неверный фрагмент");
