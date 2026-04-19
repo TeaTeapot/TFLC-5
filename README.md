@@ -7,8 +7,8 @@
 
 ## Сведения об авторе
 
-- **Студент:** [Гладышев Р.М.]
-- **Группа:** [АВТ-314]
+- **Студент:** Гладышев Р.М.
+- **Группа:** АВТ-314
 
 ## Постановка задачи
 
@@ -32,3 +32,93 @@
 
 ---
 
+## Структура AST
+ 
+### Типы узлов
+ 
+| Узел | Описание | Поля |
+|------|----------|------|
+| `ProgramNode` | Корень программы | `Declarations`, `Body` |
+| `VarDeclNode` | Объявление переменной | `Name`, `TypeName`, `InitialValue?` |
+| `WhileNode` | Оператор цикла | `Condition`, `Body` |
+| `AssignNode` | Оператор присваивания `<-` | `Target`, `Expression` |
+| `BinaryOpNode` | Бинарная операция | `Operator`, `Left`, `Right` |
+| `UnaryOpNode` | Унарная операция | `Operator`, `Operand` |
+| `VariableNode` | Идентификатор | `Name`, `ResolvedType` |
+| `IntLiteralNode` | Целочисленный литерал | `Value` (long) |
+| `FloatLiteralNode` | Вещественный литерал | `Value` (double) |
+| `ErrorNode` | Узел-заглушка при ошибке разбора | `Description` |
+
+
+
+### Схема AST
+
+<img width="292" height="881" alt="твяик5 drawio" src="https://github.com/user-attachments/assets/3433dfb4-dfff-4632-ab21-0b1b2077f484" />
+
+ 
+### Формат вывода AST в программе
+ 
+AST выводится в область результатов в текстовом виде с псевдографикой:
+
+<img width="382" height="253" alt="image" src="https://github.com/user-attachments/assets/cacd704d-6a9f-44b3-808d-fcb853d08aa6" />
+
+
+### Тестирование
+
+
+<img width="506" height="353" alt="WindowsFormsApp1_pZPU2SyvBK" src="https://github.com/user-attachments/assets/0afad6b2-cd1d-480f-b12d-7b5b873a7563" />
+
+
+<img width="506" height="353" alt="WindowsFormsApp1_14LlAmRKAf" src="https://github.com/user-attachments/assets/4492b672-0952-45b5-b58c-089d254d4480" />
+
+
+
+<img width="506" height="353" alt="WindowsFormsApp1_7IFvoIeYZP" src="https://github.com/user-attachments/assets/60b73acc-f900-4a1d-9e0d-aafa17be8d89" />
+
+
+
+<img width="506" height="353" alt="WindowsFormsApp1_RmOgPQpOwX" src="https://github.com/user-attachments/assets/cca0e739-d632-46eb-9b48-161ef2b5c189" />
+
+
+
+<img width="1920" height="1032" alt="WindowsFormsApp1_b5XE20BWPX" src="https://github.com/user-attachments/assets/b5beb77d-8fe1-4434-8f6b-632b598dbc14" />
+
+Ниже было удалено объявление i
+
+
+<img width="1920" height="1032" alt="WindowsFormsApp1_rkaFhaw7ay" src="https://github.com/user-attachments/assets/b5625630-7781-498f-b0f2-d79e9e90e4cb" />
+
+
+### Сборка и запуск
+ 
+**Через Visual Studio:**
+1. Открыть `TextEditor.sln`
+2. Нажать `Ctrl+Shift+B` — сборка
+3. Нажать `F5` — запуск
+**Через командную строку:**
+```cmd
+cd путь\к\проекту
+dotnet build
+dotnet run
+```
+ 
+**Без IDE (готовый .exe):**
+```
+TextEditor\bin\Release\TextEditor.exe
+```
+Все необходимые DLL находятся рядом с `.exe`, установка не требуется.
+ 
+### Использование анализатора
+ 
+1. **Объявить переменные** (кнопка О на панели):
+   - Меню «Текст» → «Объявить переменные» (или кнопка на панели)
+   - Ввести имя, тип (`Int`/`Float`/`Bool`), начальное значение
+   - Нажать OK
+2. **Ввести программу** в область редактирования.  
+   Синтаксис:
+   ```
+   while <условие> do <переменная> <- <выражение>;
+   ```
+ 
+3. **Запустить анализ**:
+   - Меню «Пуск» → «Запустить» (или кнопка ▶ на панели)
